@@ -124,3 +124,13 @@ Calculator.Add(1, 2, 3, 4);
 
 //Not used all the time, but can be useful
 ```
+
+## Initialization
+
+```cs
+public class Customer
+{
+  // readonly means that it can only be assigned once.
+  readonly List<Order> Orders = new List<Order>();
+}
+```

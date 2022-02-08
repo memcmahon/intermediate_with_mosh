@@ -7,23 +7,23 @@ namespace Classes
     {
         public int Id;
         public string Name;
-        public List<Order> Orders;
+        public List<Order> Orders = new List<Order>();
 
-        public Customer()
+        public Customer(int id)
         {
-            Orders = new List<Order>();
-        }
-
-        public Customer(int id) : this()
-        {
-            Id = id;
+            this.Id = id;
         }
 
         public Customer(int id, string name)
-            : this()
+            :this(id)
         {
-            Id = id;
-            Name = name;
+            this.Name = name;
+        }
+
+        public void Promote()
+        {
+            Orders = new List<Order>();
+            //...
         }
     }
 }

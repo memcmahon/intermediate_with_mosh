@@ -6,50 +6,16 @@ namespace Classes
     {
         static void Main(string[] args)
         {
-            // Conversions option 1
-            try
-            {
-                int.Parse("abc");
-            }
-            catch (Exception)
-            {
-                Console.WriteLine("Unable to convert");
-            }
+            var customer = new Customer(1);
 
-            // Option 2
-            int number;
-            bool result = int.TryParse("123", out number);
+            customer.Orders.Add(new Order());
+            customer.Orders.Add(new Order());
 
-            if (result)
-            {
-                Console.WriteLine(number);
-            }
-            else
-            {
-                Console.WriteLine("Unable to convert");
-            }
+            Console.WriteLine(customer.Orders.Count);
 
-            
-            
-        }
+            customer.Promote();
 
-        static void UsePoints()
-        {
-            try
-            {
-                var point = new Point(10, 20);
-                point.Move(null);
-
-                Console.WriteLine(point.X + ", " + point.Y);
-
-                point.Move(100, 200);
-
-                Console.WriteLine(point.X + ", " + point.Y);
-            }
-            catch (Exception)
-            {
-                Console.WriteLine("An unexpected error occured");
-            }
+            Console.WriteLine(customer.Orders.Count);
         }
     }
 }

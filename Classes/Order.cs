@@ -3,8 +3,6 @@ namespace Classes
 {
     public class Order
     {
-        public Order()
-        {
-        }
+
     }
 }
