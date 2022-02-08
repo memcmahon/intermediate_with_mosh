@@ -67,3 +67,60 @@ public class Person
     this.Name = name;
   }
 }
+```
+
+- Best case is to use constructors for only those things which an object NEEDS in order to behave (the things that will be the same for all instances of that object).  For initial field setup, it is better to use **Object Initializers**
+
+```cs
+public class Person
+{
+  public string FirstName;
+  public string LastName;
+  public DateTime Birthdate;
+  public List<Dog> Dogs;
+
+  public Person()
+  {
+    Dogs = new List<Dog>();
+  }
+}
+
+var person = new Person
+             {
+               FirstName = "Megan";
+               LastName = "McMahon";
+             };
+```
+
+### Methods
+
+- **Method Signature** is the name and number & type of its parameters.
+- **Overloading** is having a method of the same name but different parameters.
+- If a method has varying numbers of parameters (as in an Add method that can add any number of inputs):
+
+```cs
+// If you have a method that Adds multiple nums together, you could do:
+public class Calculator
+{
+  public int Add(int[] numbers)
+  {
+    ...
+  }
+}
+
+Calculator.Add(new int[]{1, 2, 3, 4});
+
+//OR you could use the params modifier to avoid having to `new` an array:
+
+public class Calculator
+{
+  public int Add(params int[] numbers){}
+  {
+    ...
+  }
+}
+
+Calculator.Add(1, 2, 3, 4);
+
+//Not used all the time, but can be useful
+```

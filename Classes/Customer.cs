@@ -19,7 +19,8 @@ namespace Classes
             Id = id;
         }
 
-        public Customer(int id, string name) : this()
+        public Customer(int id, string name)
+            : this()
         {
             Id = id;
             Name = name;
