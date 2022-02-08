@@ -134,3 +134,17 @@ public class Customer
   readonly List<Order> Orders = new List<Order>();
 }
 ```
+
+## Access Modifiers
+
+A way to control access to a class and/or its members.
+
+* Public
+* Private
+* Protected
+* Internal
+* Protected Internal
+
+Encapsulation - define fields as private, with getter and setter methods.. A setter method allows you to set some logic - like check to see if that field has been assigned or not.
+
+** Private fields should start with and `_` **

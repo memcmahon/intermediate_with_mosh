@@ -8,6 +8,8 @@ namespace Classes
         public int Id;
         public string Name;
         public List<Order> Orders = new List<Order>();
+        // the readonly flag will stop you from being able to do something like on line 27
+        //public readonly List<Order> Orders = new List<Order>();
 
         public Customer(int id)
         {
