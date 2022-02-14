@@ -1,31 +1,31 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Classes
 {
-    public class Person
+    public class HttpCookie
     {
-        public DateTime Birthdate { get; set; }
-        public int Age
-        {
-            get
-            {
-                var timeSpan = DateTime.Today - Birthdate;
-                var years = timeSpan.Days / 365;
+        private readonly Dictionary<string, string> _dictionary;
 
-                return years;
-            }
+        public HttpCookie()
+        {
+            _dictionary = new Dictionary<string, string>();
         }
 
+        public string this[string key]
+        {
+            get { return _dictionary[key]; }
+            set { _dictionary[key] = value; }
+        }
     }
 
     class Program
     {
         static void Main(string[] args)
         {
-            var person = new Person();
-            person.Birthdate = new DateTime(1988, 01, 13);
-            Console.WriteLine(person.Age);
-          
+            var cookie = new HttpCookie();
+            cookie["name"] = "Megan";
+            Console.WriteLine(cookie["name"]);
         }
     }
 }

@@ -242,3 +242,38 @@ public class Person
   * Auto-Implemented properties
   * Constructor(s)
   * Calculated properties
+
+### Indexers
+
+Classes can be created to behave like an indexed object (list/dictionary).  The HttpCookie() class might be set up this way:
+
+```cs
+public class HttpCookie
+{
+    private readonly Dictionary<string, string> _dictionary;
+    public DateTime Expiry { get; set; }
+
+    public HttpCookie()
+    {
+        _dictionary = new Dictionary<string, string>();
+    }
+
+    public string this[string key]
+    {
+        get { return _dictionary[key]; }
+        set { _dictionary[key] = value; }
+    }
+}
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        var cookie = new HttpCookie();
+        cookie["name"] = "Megan";
+        Console.WriteLine(cookie["name"]);
+    }
+}
+```
+
+It will not be common to create Indexer classes, but it is uselful to know that this could be happening.
