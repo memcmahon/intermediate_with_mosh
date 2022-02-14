@@ -148,3 +148,45 @@ A way to control access to a class and/or its members.
 Encapsulation - define fields as private, with getter and setter methods.. A setter method allows you to set some logic - like check to see if that field has been assigned or not.
 
 ** Private fields should start with and `_` **
+
+**Property** - A class member that encapsulates a getter/setter for a single field.
+
+```cs
+//NO PROPERTIES
+public class Person
+{
+  private DateTime _birthdate;
+
+  public void SetBirthdate(DateTime birthdate)
+  {
+    _birthdate = birthdate;
+  }
+
+  public DateTime getBirthdate()
+  {
+    return _birthdate;
+  }
+
+}
+```
+
+```cs
+//WITH PROPERTY
+public class Person
+{
+  private DateTime _birthdate;
+
+  //property
+  public DateTime Birthdate
+  {
+    get { return _birthdate; }
+    set { _birthdate = value; }
+  }
+}
+
+//With Auto-Implemented properties.  Usefull for when there is no logic required for getting and/or setting..  The private field is created internally during compilation.
+public class Person
+{
+  public DateTime Birthdate { get; set; }
+}
+```
