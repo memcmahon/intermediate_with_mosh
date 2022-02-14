@@ -184,9 +184,61 @@ public class Person
   }
 }
 
-//With Auto-Implemented properties.  Usefull for when there is no logic required for getting and/or setting..  The private field is created internally during compilation.
+//With Auto-Implemented properties.  Useful for when there is no logic required for getting and/or setting..  The private field is created internally during compilation.
 public class Person
 {
   public DateTime Birthdate { get; set; }
 }
 ```
+
+- When you need some logic around a property:
+
+```cs
+public class Person
+    {
+        public DateTime Birthdate { get; set; }
+        public int Age
+        {
+            get
+            {
+                var timeSpan = DateTime.Today - Birthdate;
+                var years = timeSpan.Days / 365;
+
+                return years;
+            }
+        }
+
+    }
+```
+
+- an example with protected setter:
+
+```cs
+public class Person
+{
+  //shortcut - prop
+  public DateTime Birthdate { get; private set; }
+
+  //shortcut - ctor
+  public Person(DateTime birthdate)
+  {
+      Birthdate = birthdate;
+  }
+
+  public int Age
+  {
+    get
+    {
+      var timeSpan = DateTime.Today - Birthdate;
+      var years = timeSpan.Days / 365;
+
+      return years;
+    }
+  }
+}
+```
+
+- Convention for ordering properties/constructor:
+  * Auto-Implemented properties
+  * Constructor(s)
+  * Calculated properties
