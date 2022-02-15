@@ -1,31 +1,31 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace Classes
 {
-    public class HttpCookie
-    {
-        private readonly Dictionary<string, string> _dictionary;
-
-        public HttpCookie()
-        {
-            _dictionary = new Dictionary<string, string>();
-        }
-
-        public string this[string key]
-        {
-            get { return _dictionary[key]; }
-            set { _dictionary[key] = value; }
-        }
-    }
-
     class Program
     {
         static void Main(string[] args)
         {
-            var cookie = new HttpCookie();
-            cookie["name"] = "Megan";
-            Console.WriteLine(cookie["name"]);
+            var stopwatch = new Stopwatch();
+            string input = null;
+            Console.WriteLine("This is a stopwatch, enter 'start', 'stop', 'lap' or 'end'");
+            while (input != "end")
+            {
+                input = Console.ReadLine();
+                if (input == "start")
+                {
+                    stopwatch.Start();
+                }
+                else if (input == "stop")
+                {
+                    stopwatch.Stop();
+                }
+                else if (input == "lap")
+                {
+                    stopwatch.Lap();
+                }
+            }
+            Console.WriteLine(stopwatch.Summary());
         }
     }
 }
