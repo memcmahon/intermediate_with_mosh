@@ -277,3 +277,53 @@ class Program
 ```
 
 It will not be common to create Indexer classes, but it is uselful to know that this could be happening.
+
+## Inheritance
+
+Syntax
+```cs
+public class PresentationObject
+{
+  // Common shared code
+}
+
+public class Text : PresentationObject
+{
+  // Code specific to Text
+}
+```
+
+Classes can only inherit from ONE parent class.
+
+## Composition
+Describes a Has-a relationship.  Be careful not to be too literal when deciding between Inheritance and composition!
+
+```cs
+class Animal
+{
+    public void Eat()
+    {
+    	Console.WriteLine("Eating...");
+    }
+}
+
+class Walkable
+{
+    public void Walk()
+    {
+    	Console.WriteLine("Walking...");
+    }
+}
+
+class Swimmable
+{
+    public void Swim()
+    {
+    	Console.WriteLine("Swimming...");
+    }
+}
+
+class Dog {}
+class Cat {}
+class Fish{}
+```
