@@ -327,3 +327,38 @@ class Dog {}
 class Cat {}
 class Fish{}
 ```
+
+### Access Modifiers
+* Public - accessible basically anywhere
+* Private - accessible only within that class
+* Protected - accessible within that class, and its dependencies (inheritance etc...)
+* Internal -
+
+
+### Constructors and inheritance
+
+Base Class constructors are always executed first.
+
+Base class constructors are NOT inherited. In a derived class, you need to redefine your constructors.
+
+```cs
+public class Vehicle
+{
+  private string _registrationNumber;  
+
+  public Vehicle(string registrationNumber)
+  {
+    _registrationNumber = registrationNumber;
+  }
+}
+
+public class Car : Vehicle
+{
+  public Car(string registrationNumber)
+    : base(registrationNumber)
+  {
+    // initialize fields specific to the Car class.
+  }
+}
+
+```
