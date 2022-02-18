@@ -360,5 +360,8 @@ public class Car : Vehicle
     // initialize fields specific to the Car class.
   }
 }
-
 ```
+
+### Upcasting/Downcasting
+
+Converting a derived class to a base class (up), or base class to derived (down).
