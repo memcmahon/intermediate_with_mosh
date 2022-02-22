@@ -1,0 +1,4 @@
+INFO: Migration started at: 1:29:04 PM
+INFO: Migration finished at 1:29:06 PM
+INFO: Migration started at: 1:29:31 PM
+INFO: Migration finished at 1:29:33 PM
