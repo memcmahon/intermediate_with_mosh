@@ -3,19 +3,74 @@ using System.Collections.Generic;
 
 namespace Classes
 {
-    class Shipe
+    public abstract class DbConnection
     {
-        public void ImA()
+        private readonly string _connectionString;
+        private readonly TimeSpan _timeout;
+
+        public DbConnection(string connectionString)
         {
-            Console.WriteLine("I'm a Shape");
+            if(String.IsNullOrEmpty(connectionString))
+            {
+                throw new NullReferenceException();
+            }
+
+            _connectionString = connectionString;
+        }
+
+        public abstract void Open();
+        public abstract void Close();
+    }
+
+    public class SqlConnection : DbConnection
+    {
+        public SqlConnection(string connectionString)
+            : base(connectionString) { }
+
+        public override void Open()
+        {
+            Console.WriteLine("SQL Connection Open");
+        }
+
+        public override void Close()
+        {
+            Console.WriteLine("SQL Connection Close");
         }
     }
 
-    class Circle : Shipe
+    public class OracleConnection : DbConnection
     {
-        public void ImA()
+        public OracleConnection(string connectionString)
+            : base(connectionString) { }
+
+        public override void Open()
         {
-            Console.WriteLine("I'm a Circle");
+            Console.WriteLine("Oracle Connection Open");
+        }
+
+        public override void Close()
+        {
+            Console.WriteLine("Oracle Connection Close");
+        }
+    }
+
+    public class DbCommand
+    {
+        private readonly DbConnection _connection;
+        private readonly string _instruction;
+
+        public DbCommand(DbConnection connection, string instruction)
+        {
+            _connection = connection;
+            _instruction = instruction;
+        }
+
+        public void Execute()
+        {
+            _connection.Open();
+            Console.WriteLine(_instruction);
+            _connection.Close();
+
         }
     }
 
@@ -23,31 +78,15 @@ namespace Classes
     {
         static void Main(string[] args)
         {
-            var things = new List<Shipe>();
+            var sqlConnection = new SqlConnection("tada");
+            var oracleConnection = new OracleConnection("bada");
+            var instruction = "Create a Table";
+            var command1 = new DbCommand(sqlConnection, instruction);
+            var command2 = new DbCommand(oracleConnection, instruction);
 
-            var shape1 = new Shipe();
-            var shape2 = new Shipe();
-            var circle1 = new Circle();
-            var circle2 = new Circle();
-
-            //Adding circles to this list of shapes upcasts them all to shapes.
-            things.Add(shape1);
-            things.Add(circle1);
-            things.Add(shape2);
-            things.Add(circle2);
-
-            foreach(var thing in things)
-            {
-                Circle circle = thing as Circle;
-                if(circle != null)
-                {
-                    circle.ImA();
-                    continue;
-                }
-
-                thing.ImA();
-            }
-
+            command1.Execute();
+            command2.Execute();
         }
     }
 }
+

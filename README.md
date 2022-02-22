@@ -416,3 +416,110 @@ class Program
     }
 }
 ```
+
+
+### Method Overriding
+Modifying the implementation of an inherited Method.
+
+```cs
+class Mammal
+    {
+        // You must declare the method in the base class as virtual, so that we can override it in the derived classes.
+        public virtual void Speak()
+        {
+            Console.WriteLine("I'm a {0}", this.GetType().Name);
+        }
+
+    }
+
+    class Dog : Mammal
+    {
+
+    }
+
+    class Fish : Mammal
+    {
+        public override void Speak()
+        {
+            Console.WriteLine("bubble bubble bubble");
+            // the line below will run the base method, it is not required, you can get rid of it.
+            //base.Speak();
+        }
+    }
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            var doggy = new Dog();
+            var fishy = new Fish();
+
+            doggy.Speak();
+            fishy.Speak();
+
+            var list = new List<Mammal> { doggy, fishy };
+
+            foreach(var animal in list)
+            {
+                animal.Speak();
+            }
+        }
+    }
+```
+
+## Abstract Classes & methods
+
+Some base classes will be so abstract that implementing a particular method might not make sense.  In this instance, we can use the `abstract` modifier to indicate that base classes must be responsible for implementing these behaviors.
+
+```cs
+public class Shape
+{
+    public virtual void Draw()
+    {
+        //Shape is too abstract to be able to implement any drawing functionality.
+    }
+}
+
+public class Circle : Shape
+{
+    public override void Draw()
+    {
+        Console.WriteLine("Drawing a circle");
+    }
+}
+
+public class Rectangle : Shape
+{
+    public override void Draw()
+    {
+        Console.WriteLine("Drawing a Rectangle");
+    }
+}
+
+//ABSTRACTED TO (but with Rectangle fully defined) :
+
+public abstract class Shape
+{
+    public abstract void Draw()
+}
+
+public class Circle : Shape
+{
+    public override void Draw()
+    {
+        Console.WriteLine("Drawing a circle");
+    }
+}
+
+public class Rectangle : Shape
+{
+    // This will not compile because all derived classes must implement the abstracted methods.
+}
+```
+
+Abstract methods cannot include implementation.
+Abstract classes cannot be instantiated.
+
+Use abstraction when you want to force other devs to follow a specific design.
+
+## Sealed classes
+The opposite of an abstract class; it cannot be derived from. Hardly ever used.
