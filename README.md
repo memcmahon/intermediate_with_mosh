@@ -523,3 +523,6 @@ Use abstraction when you want to force other devs to follow a specific design.
 
 ## Sealed classes
 The opposite of an abstract class; it cannot be derived from. Hardly ever used.
+
+## interfaces
+Interfaces do not have any implementation.  They are used to build loosely couples applications.
