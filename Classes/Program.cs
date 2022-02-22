@@ -1,29 +1,53 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Classes
 {
+    class Shipe
+    {
+        public void ImA()
+        {
+            Console.WriteLine("I'm a Shape");
+        }
+    }
+
+    class Circle : Shipe
+    {
+        public void ImA()
+        {
+            Console.WriteLine("I'm a Circle");
+        }
+    }
+
     class Program
     {
         static void Main(string[] args)
         {
-            var stack = new Stack();
+            var things = new List<Shipe>();
 
-            stack.Push(1);
-            stack.Push(2);
-            stack.Push(3);
-            stack.Push("hello");
-            stack.Push("world");
+            var shape1 = new Shipe();
+            var shape2 = new Shipe();
+            var circle1 = new Circle();
+            var circle2 = new Circle();
 
-            Console.WriteLine(stack.Pop());
-            Console.WriteLine("Length: " + stack.Length());
-            Console.WriteLine(stack.Pop());
-            Console.WriteLine("Length: " + stack.Length());
-            Console.WriteLine(stack.Pop());
-            Console.WriteLine("Length: " + stack.Length());
-            Console.WriteLine(stack.Pop());
-            Console.WriteLine("Length: " + stack.Length());
-            Console.WriteLine(stack.Pop());
-            Console.WriteLine("Length: " + stack.Length());
+            //Adding circles to this list of shapes upcasts them all to shapes.
+            things.Add(shape1);
+            things.Add(circle1);
+            things.Add(shape2);
+            things.Add(circle2);
+
+            foreach(var thing in things)
+            {
+                Circle circle = thing as Circle;
+                if(circle != null)
+                {
+                    circle.ImA();
+                    continue;
+                }
+
+                thing.ImA();
+            }
+
         }
     }
 }

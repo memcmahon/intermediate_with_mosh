@@ -365,3 +365,54 @@ public class Car : Vehicle
 ### Upcasting/Downcasting
 
 Converting a derived class to a base class (up), or base class to derived (down).
+
+```cs
+class Shape
+{
+    public void ImA()
+    {
+        Console.WriteLine("I'm a Shape");
+    }
+}
+
+class Circle : Shape
+{
+    public void ImA()
+    {
+        Console.WriteLine("I'm a Circle");
+    }
+}
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        var things = new List<Shape>();
+
+        var shape1 = new Shape();
+        var shape2 = new Shape();
+        var circle1 = new Circle();
+        var circle2 = new Circle();
+
+        //Adding circles to this list of shapes upcasts them all to shapes.
+        things.Add(shape1);
+        things.Add(circle1);
+        things.Add(shape2);
+        things.Add(circle2);
+
+        foreach(var thing in things)
+        {
+            //Use `as` to test if a thing can be downcast - it will return null if not, the thing if yes.
+            Circle circle = thing as Circle;
+            if(circle != null)
+            {
+                circle.ImA();
+                continue;
+            }
+
+            thing.ImA();
+        }
+
+    }
+}
+```
